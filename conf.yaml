@@ -1,0 +1,5 @@
+model_loss: ctc #rnn-T
+encoder_layer: 5
+decoder_layer: 2
+drop_out: 0.2
+lr: 1e-4

@@ -1,4 +1,5 @@
 model_loss: ctc #rnn-T
+ngpu: 2
 encoder_layer: 5
 decoder_layer: 2
 drop_out: 0.2

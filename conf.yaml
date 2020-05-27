@@ -1,6 +1,13 @@
 model_loss: ctc #rnn-T
+encoder_layer: 
+decoder_layer:
+Conv2d: True
+batch_size: 32
+epochs: 100
 ngpu: 2
 encoder_layer: 5
 decoder_layer: 2
 drop_out: 0.2
 lr: 1e-4
+train-data:
+test-data:

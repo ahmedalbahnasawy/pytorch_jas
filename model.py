@@ -3,9 +3,10 @@ import torch.nn.functional as F
 import torch
 import torch.nn
 torch.manual_seed(1)
-class STT(torch.nn.Module):
+
+class ASR(torch.nn.Module):
   def __init__(self , input_channel):
-    super(STT, self).__init__()
+    super(ASR, self).__init__()
     self.input_channel = input_channel
     self. conv_1 = torch.nn.Conv2d(input, 64, kernel_size =3, stride =1 , padding=1 )
     self.bn_1 = torch.nn.BatchNorm2d(64 , eps=1e-8, momentum=0.1, affine=True, Track_running_stats=True)

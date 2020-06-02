@@ -34,12 +34,28 @@ class STT(torch.nn.Module):
       
 
       return 
-
-
 class RNNEncoder(torch.nn.Module):
-  def __init__ (self, rnn_tybe,input_dim,num_units, num_layer,dropout_in ):
-    
-    super(RNNEncoder).__()
+  def __init__(self,n_layers,rnn_type='blstm',n_units=512,odims=1024, batch_first=True, num_dir =2, projection = True):
+    super(RNNEncoder).__init__()
+
+
+    def build_model(n_layers,rnn_type,n_units,odims, num_dir, projection,batch_first=True):
+
+        rnn = []
+        proj = []
+        for i in range(n_layers):
+            bidirectional = True if ('blstm' in rnn_type or 'lstm' in rnn_type) else False
+            rnn_i = nn.LSTM
+            rnn += [rnn_i(odims, n_units, 1, batch_first=True,
+                                       bidirectional=bidirectional)]
+            if projection:
+                num_projection = 512
+                if i != n_layers-1:
+                    proj += [nn.Linear(n_units*num_dir, num_projection)]
+        return rnn
+    value = build_model(n_layers,rnn_type,n_units,odims, num_dir, projection,batch_first=True)
+    print(value)
+
     "Not yet implemented "
 class Decoder(torch.nn.Module):
   def __init__():

@@ -94,9 +94,9 @@ class Resiudal_CNN(torch.nn.Module):
     x = x + resiudal_conn
     return x
 
- class ASR(torch.nn.Module):
+ class CNN_Network(torch.nn.Module):
   def __init__(self , input_channel):
-    super(ASR, self).__init__()
+    super(CNN_Network, self).__init__()
     self.input_channel = input_channel
     self. conv_1 = torch.nn.Conv2d(input, 64, kernel_size =3, stride =1 , padding=1 )
     self.bn_1 = torch.nn.BatchNorm2d(64 , eps=1e-8, momentum=0.1, affine=True, Track_running_stats=True)
@@ -123,4 +123,4 @@ f = torch.ones(1,3,40,3)
 m = Resiudal_CNN(f)
 
 input_b = torch.randn(83)
-model = STT(input_b)
+model = CNN_Network(input_b)

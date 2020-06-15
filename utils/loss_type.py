@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 torch.manual_seed(1)
+
 class Build_loss():
   def __init__(self,loss_type):
     self.loss_type = loss_type
@@ -11,8 +12,8 @@ class Build_loss():
       raise NotImplementedError
     else:
       if loss_type =='transducer':
-        #from warprnnt_pytorch import RNNTLoss
-        #criterion = RNNTloss()
+        from warprnnt_pytorch import RNNTLoss
+        criterion = RNNTloss()
         criterion = torch.nn.CrossEntropyLoss()
       else:
         criterion = torch.nn.CTCLoss(reduction='none', zero_infinity=True)

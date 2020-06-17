@@ -94,6 +94,27 @@ class Resiudal_CNN(torch.nn.Module):
     x = x + resiudal_conn
     return x
 
+   
+   class BidirectionalGRU(torch.nn.Module):
+
+    def __init__(self, rnn_dim, hidden_size, dropout, batch_first):
+        super(BidirectionalGRU, self).__init__()
+
+        self.BiGRU = torch.nn.GRU(
+            input_size=rnn_dim, hidden_size=hidden_size,
+            num_layers=3, batch_first=batch_first, bidirectional=True)
+        self.layer_norm = CNN_layerNorm(rnn_dim)
+        self.dropout = torch.nn.Dropout(dropout)
+    def forward(self, x):
+        x = self.layer_norm(x)
+        x = F.gelu(x)
+        x, _ = self.BiGRU(x)
+        x = self.dropout(x)
+        return x
+
+l = BidirectionalGRU(512,512,0.2,batch_first=True)
+inp = torch.randn(1024, 112, 8)
+
  class CNN_Network(torch.nn.Module):
   def __init__(self , input_channel):
     super(CNN_Network, self).__init__()

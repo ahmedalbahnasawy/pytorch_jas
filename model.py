@@ -100,7 +100,7 @@ class Resiudal_CNN(torch.nn.Module):
     def __init__(self, rnn_dim, hidden_size, dropout, batch_first):
         super(BidirectionalGRU, self).__init__()
 
-        self.BiGRU = torch.nn.GRU(
+        self.bidirect = torch.nn.GRU(
             input_size=rnn_dim, hidden_size=hidden_size,
             num_layers=3, batch_first=batch_first, bidirectional=True)
         self.layer_norm = CNN_layerNorm(rnn_dim)
@@ -108,7 +108,7 @@ class Resiudal_CNN(torch.nn.Module):
     def forward(self, x):
         x = self.layer_norm(x)
         x = F.gelu(x)
-        x, _ = self.BiGRU(x)
+        x, _ = self.bidirect(x)
         x = self.dropout(x)
         return x
 

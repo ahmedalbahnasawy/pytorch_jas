@@ -1,11 +1,23 @@
+r'''optimizer'''
 import torch
-class ASR_optim(optim):
-    def__init__(self,model,params, parallel_mode = 'dp'):
-        super(ASR_optim).__init__()
+import torch.nn as nn
+from torch.nn import functional as F 
+
+
+class ASR_optimizer(object):
+    def __init__(self,model, params):
+        super(ASR_optimizer, self).__init__()
         self.params = params
         self.model = model
-        self.parallel_mode = parallel_mode
-        self.lr = self.parms['lr']
-        if params['optimizer'] == 'adam':
-            self.optimizer = torch.optim.Adam(filter(lambda p:p.requires_grad, model.parameters()), lr = self.lr, betas=(0.9,0.98), eps=1e-8)
+        self.parallel_mode = self.params['parallel_mode']
+        self.lr = self.params['lr']
+
+        if params['optimizer'] == 'sgd':
+          self.optimizer = torch.optim.SGD(filter(lambda p:p.requires_grad, model.parameters()), lr = self.lr, momentum=0.9)
+        elif params['optimizer'] == 'adam':
+          self.optimizer = torch.optim.Adam(filter(lambda p:p.requires_grad, model.parameters()),lr = self.lr, betas=(0.9,0.98), eps=1e-8)
+        elif params['optimizer'] == 'adadelta':
+          self.optimizer = torch.optim.Adadelta(filter(lambda p:p.requires_grad, model.parameters()),lr = self.lr, eps=1e-8)
+        else:
+          raise NotImplementedError
   

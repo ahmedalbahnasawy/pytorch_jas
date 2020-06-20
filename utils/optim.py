@@ -1,10 +1,12 @@
+
+@Author: Ahmed Albhnasawy
+@Email: ahmedbhna@gmail.com
+
 r'''optimizer'''
 import torch
 import torch.nn as nn
 from torch.nn import functional as F 
 
-@Author: Ahmed Albhnasawy
-@Email: ahmedbhna@gmail.com
     
 class ASR_optimizer(object):
     def __init__(self,model, params):

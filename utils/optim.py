@@ -3,7 +3,9 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F 
 
-
+@Author: Ahmed Albhnasawy
+@Email: ahmedbhna@gmail.com
+    
 class ASR_optimizer(object):
     def __init__(self,model, params):
         super(ASR_optimizer, self).__init__()
@@ -20,4 +22,12 @@ class ASR_optimizer(object):
           self.optimizer = torch.optim.Adadelta(filter(lambda p:p.requires_grad, model.parameters()),lr = self.lr, eps=1e-8)
         else:
           raise NotImplementedError
-  
+        
+  def state_dict(self):
+      return self.optimizer.state_dict()
+
+  def load_state_dict(Self,state_dict):
+      self.optimizer.load_state_dict(state_dict)
+
+  def zero_grad(self):
+      self.optimizer.zero_grad()

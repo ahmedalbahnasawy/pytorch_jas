@@ -3,6 +3,8 @@ AASR
 For runing the AASR use ** main.py **
 
 TODO:
-optimizer class
-define 2 types of initializer
-rnn transucer and dummy input
+- [x] Convolution model
+- [x] optimizer class
+- [ ] define 2 types of initializer
+- [ ] RNN transucer and dummy input
+- [ ] Docker file to install RNN-Transducer

@@ -1,0 +1,40 @@
+# Copyrights 2020 Ahmed Bhna
+# Transformer module 
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class TransforEncoder():
+    def __init__(self, input_size, d_model=256, attention_heads=4, linear_units=2048, num_blocks=3, pos_dropout_rate=0.0,
+                 residual_dropout_rate=0.1, activation='relu', type='transformer'):
+        super(TransformerEncoder, self).__init__()
+    " Embedding layer either LinearPE or conv2d supsampling => Encoder layer( Multihead attention layer => PositionFeedForward layer => LayerNormalization => droput "
+    
+    
+class TransforDecoder():
+        def __init__(self, input_size, d_model=256, attention_heads=4, linear_units=2048, num_blocks=3, pos_dropout_rate=0.0,
+                 residual_dropout_rate=0.1, activation='relu', type='transformer'):
+        "Multihead attention layer => PositionFeedForward layer => LayerNormalization => droput "
+
+class LinearPE():
+" implemention of linear positional encoding"
+" linear => dropout => Relu => PositionalEncoding"
+    def __init__(self):
+        super(LinearPE, self).__init()
+
+class PositionalEncoding():
+    def __init__(self):
+    "initialize positional encoding class"
+    
+
+class LayerNormalization():
+    def __init__(self):
+        super(LayerNormalization, self).__init__()
+        
+class PositionFeedForward(nn.Module):
+    def __init__(self, input_dim, hidden_units, dropout_rate):
+        super(PositionFeedForward, self).__init__()
+        
+        " 3 linear layers follows by dropout and relu activation function"

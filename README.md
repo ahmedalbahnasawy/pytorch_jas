@@ -7,4 +7,5 @@ TODO:
 - [x] optimizer class
 - [ ] define 2 types of initializer
 - [ ] RNN transucer and dummy input
-- [ ] Docker file to install RNN-Transducer
+- [ ] Docker file to install RNN-Transducer and Auto Segmentation Criterion (ASG) loss
+

@@ -33,3 +33,6 @@ class ASR_optimizer(object):
 
   def zero_grad(self):
       self.optimizer.zero_grad()
+  def inc_epoch(self):
+      self.current_epoch +=1
+  

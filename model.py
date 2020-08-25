@@ -130,6 +130,8 @@ inp = torch.randn(1024, 112, 8)
     
     def forward(self, batch_input, input_length, **kwargs):
       # input mini batch of data
+      x= batch_input.view(batch_input.size(0), batch_input.size(1), self.input,
+                             batch_input.size(2) // self.input).transpose(1, 2)
       #x = batch_input.view()
       x = F.relu(self.bn_1(self.conv_1(batch_input)))
       x = F.relu(self.bn_2(self.conv_2(x)))
@@ -137,8 +139,13 @@ inp = torch.randn(1024, 112, 8)
       x = F.relu(self.bn_3(self.conv_3(x)))
       x = F.relu(self.bn_4(self.conv_4(x)))
       x = F.max_pool2d(x,2,stride=2,ceil_mode=True)
+      # input length should always be numpy array
+      input_length = np.array(input_length,dtype=np.float32)
+      input_length = np.array(np.ceil(input_length/2), dtype=np.int64)
       
-      return 
+      
+      x = x.transpose(1, 2)
+      return x ,  input_length
   
 f = torch.ones(1,3,40,3)
 m = Resiudal_CNN(f)

@@ -20,6 +20,7 @@ if __name__=='__main__':
     parser.add_argument('-n','--ngpu',type=int, default=1)
     parser.add_argument('-o','--output-dir', type=str, default=None)
     parser.add_argument('-s','--seed',type=int, default=1234)
+    parser.add_argument('-v', '--mode',type=str, default=None) # mode "train" or "infer"
     args = parser.parse_args()
     main(args)
 else:

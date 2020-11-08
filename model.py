@@ -5,15 +5,6 @@ import torch.nn
 torch.manual_seed(1)
 
 
-
- class ASR(torch.nn.Module):
-  def __init__(self , input_channel):
-    super(ASR, self).__init__()
-    self.Encoder = RNNEncoder(rnn_tybe,input_dim,num_units, num_layer,dropout_in)
-    self.Decoder = RNNDecoder()
-    self.loss = Build_loss(args.model)
-
-
 class RNNEncoder(torch.nn.Module):
   def __init__(self,n_layers,rnn_type='blstm',n_units=512,odims=1024, batch_first=True, num_dir =2, projection = True):
     super(RNNEncoder).__init__()
@@ -147,8 +138,19 @@ inp = torch.randn(1024, 112, 8)
       x = x.transpose(1, 2)
       return x ,  input_length
   
+
+  
+ class ASR(torch.nn.Module):
+  def __init__(self , input_channel):
+    super(ASR, self).__init__()
+    self.Encoder = RNNEncoder(rnn_tybe,input_dim,num_units, num_layer,dropout_in)
+    self.Decoder = RNNDecoder()
+    self.loss = Build_loss(args.model)
+  
+  
 f = torch.ones(1,3,40,3)
 m = Resiudal_CNN(f)
+
 
 input_b = torch.randn(83)
 model = CNN_Network(input_b)
